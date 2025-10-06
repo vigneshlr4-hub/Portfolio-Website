@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PortfolioBuilder — Advanced</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- AUTH PAGE -->
+  <div id="authPage" class="auth-page">
+    <div class="auth-card">
+      <div class="auth-left">
+        <h1>PortfolioBuilder</h1>
+        <p>Create a professional portfolio in minutes — choose templates, add projects & publish.</p>
+      </div>
+      <div class="auth-right">
+        <h2 id="authTitle">Sign Up</h2>
+        <input id="authName" type="text" placeholder="Full name">
+        <input id="authEmail" type="email" placeholder="Email">
+        <input id="authPassword" type="password" placeholder="Password">
+        <button id="authSubmit" class="btn primary">Create account</button>
+        <p class="muted" id="switchText">Already have an account? <a id="switchLink">Login</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="app" class="app" hidden>
+    <header class="topbar">
+      <div class="brand">PortfolioBuilder</div>
+      <div class="top-actions">
+        <div id="userBadge" class="user-badge"><span id="userInitial">U</span><span id="userEmailShort">user@mail</span></div>
+        <button id="logoutBtn" class="btn">Logout</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <nav>
+          <ul>
+            <li><button class="nav-btn active" data-target="builder">Builder</button></li>
+            <li><button class="nav-btn" data-target="templates">Templates</button></li>
+            <li><button class="nav-btn" data-target="preview">Preview</button></li>
+            <li><button class="nav-btn" data-target="settings">Settings</button></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <!-- BUILDER -->
+        <section id="builder" class="panel active-panel">
+          <h2>Portfolio Builder</h2>
+
+          <div class="grid two-col">
+            <div class="card">
+              <h3>Personal Info</h3>
+              <label>Full name</label>
+              <input id="fullName" type="text" placeholder="Your name">
+              <label>Title</label>
+              <input id="jobTitle" type="text" placeholder="e.g. Frontend Developer">
+              <label>Short bio</label>
+              <textarea id="bio" rows="4" placeholder="One or two lines about you"></textarea>
+              <label>Avatar (optional)</label>
+              <input id="avatarInput" type="file" accept="image/*">
+            </div>
+
+            <div class="card preview-card">
+              <h3>Live Preview</h3>
+              <div id="miniPreview" class="mini-preview"></div>
+              <div class="preview-controls">
+                <label>Template</label>
+                <div class="templates-row" id="templateThumbs"></div>
+                <button id="openFullPreview" class="btn">Open Full Preview</button>
+                <button id="exportBtn" class="btn primary">Export HTML</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-16">
+            <h3>Add Project</h3>
+            <div class="inline-row">
+              <input id="projectTitle" type="text" placeholder="Project title">
+              <input id="projectImg" type="file" accept="image/*">
+            </div>
+            <label>Description</label>
+            <textarea id="projectDesc" rows="2" placeholder="Short description"></textarea>
+            <label>Technologies (comma separated)</label>
+            <input id="projectTech" type="text" placeholder="e.g. React, Node.js">
+            <div class="row-right">
+              <button id="addProjectBtn" class="btn primary">Add Project</button>
+            </div>
+
+            <h4>Projects</h4>
+            <div id="projectsList" class="list"></div>
+          </div>
+
+          <div class="card mt-16">
+            <h3>Skills</h3>
+            <input id="skillInput" type="text" placeholder="Type skill and press Enter">
+            <div id="skillsList" class="chips"></div>
+          </div>
+        </section>
+
+        <!-- TEMPLATES -->
+        <section id="templates" class="panel">
+          <h2>Templates</h2>
+          <p class="muted">Click a template to apply it — the mini preview and the full preview update instantly.</p>
+          <div class="templates-grid">
+            <div class="template-card" data-template="modern">
+              <div class="template-thumb" id="thumb-modern"></div>
+              <div class="template-meta">
+                <h4>Modern</h4>
+                <p class="muted">Clean, bold header with accent color</p>
+                <button class="btn apply" data-tpl="modern">Use</button>
+              </div>
+            </div>
+
+            <div class="template-card" data-template="creative">
+              <div class="template-thumb" id="thumb-creative"></div>
+              <div class="template-meta">
+                <h4>Creative</h4>
+                <p class="muted">Artistic layout with colorful accents</p>
+                <button class="btn apply" data-tpl="creative">Use</button>
+              </div>
+            </div>
+
+            <div class="template-card" data-template="photo">
+              <div class="template-thumb" id="thumb-photo"></div>
+              <div class="template-meta">
+                <h4>Photography</h4>
+                <p class="muted">Image-first template for photographers</p>
+                <button class="btn apply" data-tpl="photo">Use</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PREVIEW (editable controls) -->
+        <section id="preview" class="panel">
+          <h2>Full Preview</h2>
+          <div id="fullPreviewContainer" class="full-preview"></div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="settings" class="panel">
+          <h2>Settings</h2>
+          <p class="muted">Local-only demo auth and storage. You can clear saved data here.</p>
+          <button id="clearStorage" class="btn">Clear local data</button>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
